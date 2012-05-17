@@ -27,6 +27,7 @@ static void evEvent(CFFileDescriptorRef fdref, CFOptionFlags callBackTypes, void
     struct kevent kev;
     int fd = CFFileDescriptorGetNativeDescriptor(fdref);
 
+    printf("event loop picked up ev kqueue event, running uv once\n");
     uv_run_once(uv_default_loop());
 
     CFFileDescriptorInvalidate(fdref);
