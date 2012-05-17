@@ -1,6 +1,8 @@
 OS_NAME=$(shell uname -s)
+CFLAGS=-I libuv/include
 LIBS+=-lm -ldl -lpthread
 ifeq (${OS_NAME},Darwin)
+LDFLAGS+=-all_load -foce_load -ObjC -framework CoreFoundation -framework CoreServices
 all: osx
 else ifeq (${OS_NAME},Linux)
 all: epoll
@@ -14,7 +16,7 @@ osx.o: osx.c
 	$(CC) osx.c  -c -O -o osx.o
 
 osx: osx.o libuv/uv.a
-	$(CC) -all_load -foce_load -ObjC -framework CoreFoundation -framework CoreServices osx.o libuv/uv.a -o osx
+	$(CC) $(CFLAGS) osx.o $(LDFLAGS) libuv/uv.a -o osx
 
 epoll: epoll.c
 
