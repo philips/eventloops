@@ -13,7 +13,7 @@ libuv/uv.a:
 
 
 osx.o: osx.c
-	$(CC) osx.c  -c -O -o osx.o
+	$(CC) $(CFLAGS) osx.c  -c -O -o osx.o
 
 osx: osx.o libuv/uv.a
 	$(CC) $(CFLAGS) osx.o $(LDFLAGS) libuv/uv.a -o osx
