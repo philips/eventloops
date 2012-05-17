@@ -1,8 +1,8 @@
 #include <CoreFoundation/CoreFoundation.h>
 #include <unistd.h>
-#include <sys/event.h>
 #include <fcntl.h>
 #include "uv.h"
+#include <sys/event.h>
 
 static int64_t start_time;
 static uv_fs_t req2;
